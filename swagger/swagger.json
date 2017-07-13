@@ -1,0 +1,781 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "beego Test API",
+        "description": "beego has a very cool utils to autogenerate documents for your API",
+        "version": "1.0.0",
+        "termsOfService": "http://beego.me/",
+        "contact": {
+            "email": "astaxie@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        }
+    },
+    "basePath": "/v1",
+    "paths": {
+        "/sysuser/": {
+            "get": {
+                "tags": [
+                    "sysuser"
+                ],
+                "summary": "查询单个管理员信息",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "_id",
+                        "description": "id值",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/models.SysUser"
+                        }
+                    },
+                    "400": {
+                        "description": "返回结果为空"
+                    },
+                    "401": {
+                        "description": "参数有误"
+                    },
+                    "404": {
+                        "description": "参数为空"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "sysuser"
+                ],
+                "summary": "修改管理员信息",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "账号信息",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.SysUser"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "操作成功"
+                    },
+                    "304": {
+                        "description": "登录失败"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "sysuser"
+                ],
+                "summary": "添加管理员信息",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "账号信息",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.SysUser"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功"
+                    },
+                    "304": {
+                        "description": "添加失败"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "sysuser"
+                ],
+                "summary": "删除管理员信息",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "_id",
+                        "description": "账号",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "操作成功"
+                    },
+                    "304": {
+                        "description": "登录失败"
+                    }
+                }
+            }
+        },
+        "/sysuser/all": {
+            "get": {
+                "tags": [
+                    "sysuser"
+                ],
+                "summary": "分页查询管理员信息",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "account",
+                        "description": "账号",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "beginTime",
+                        "description": "开始时间",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "endTime",
+                        "description": "结束时间",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/models.SysUser"
+                        }
+                    },
+                    "304": {
+                        "description": "登录失败"
+                    }
+                }
+            }
+        },
+        "/sysuser/login": {
+            "get": {
+                "tags": [
+                    "sysuser"
+                ],
+                "summary": "管理员登录",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "account",
+                        "description": "账号",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "password",
+                        "description": "密码",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/models.SysUser"
+                        }
+                    },
+                    "304": {
+                        "description": "code 304  登录失败"
+                    },
+                    "404": {
+                        "description": "code 404  参数为空"
+                    }
+                }
+            }
+        },
+        "/user/": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "查询单个管理员信息",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "account",
+                        "description": "id值",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/models.Users"
+                        }
+                    },
+                    "400": {
+                        "description": "返回结果为空"
+                    },
+                    "401": {
+                        "description": "参数有误"
+                    },
+                    "404": {
+                        "description": "参数为空"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "修改会员信息",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "会员信息",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Users"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "操作成功"
+                    },
+                    "304": {
+                        "description": "登录失败"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "添加用户信息(用户注册)",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "用户信息",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.UsersParams"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功"
+                    },
+                    "304": {
+                        "description": "添加失败"
+                    }
+                }
+            }
+        },
+        "/user/all": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "分页查询会员信息",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "account",
+                        "description": "账号",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "beginTime",
+                        "description": "开始时间",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "endTime",
+                        "description": "结束时间",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/models.Page"
+                        }
+                    },
+                    "304": {
+                        "description": "登录失败"
+                    }
+                }
+            }
+        },
+        "/user/login": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "用户登录",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "account",
+                        "description": "账号",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "loginPassword",
+                        "description": "密码",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/models.Users"
+                        }
+                    },
+                    "304": {
+                        "description": "code 304  登录失败"
+                    },
+                    "404": {
+                        "description": "code 404  参数为空"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        ".ObjectId": {
+            "type": "object"
+        },
+        ".false": {
+            "type": "object"
+        },
+        "models.Page": {
+            "title": "Page",
+            "type": "object",
+            "properties": {
+                "firstPage": {
+                    "description": "是否是第一页",
+                    "type": "boolean"
+                },
+                "lastPage": {
+                    "description": "是否是最后一页",
+                    "type": "boolean"
+                },
+                "list": {
+                    "$ref": "#/definitions/4283.0x114aea20.false",
+                    "description": "内容list"
+                },
+                "pageNo": {
+                    "description": "第几页",
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "pageSize": {
+                    "description": "每页多少条",
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "totalCount": {
+                    "description": "总条数",
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "totalPage": {
+                    "description": "总页数",
+                    "type": "integer",
+                    "format": "int64"
+                }
+            }
+        },
+        "models.SysUser": {
+            "title": "SysUser",
+            "type": "object",
+            "properties": {
+                "_id": {
+                    "$ref": "#/definitions/bson.ObjectId",
+                    "description": "主键编号"
+                },
+                "accountStatus": {
+                    "description": "状态(启用,禁用)",
+                    "type": "string"
+                },
+                "accountType": {
+                    "description": "账号类型(0内部,1外部)",
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "code": {
+                    "description": "code标识",
+                    "type": "string"
+                },
+                "createTime": {
+                    "description": "创建时间",
+                    "type": "string"
+                },
+                "displayName": {
+                    "description": "使用人姓名",
+                    "type": "string"
+                },
+                "email": {
+                    "description": "邮箱",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "账号",
+                    "type": "string"
+                },
+                "password": {
+                    "description": "密码",
+                    "type": "string"
+                },
+                "phone": {
+                    "description": "联系电话",
+                    "type": "string"
+                },
+                "placeRole": {
+                    "description": "坐席角色",
+                    "type": "string"
+                },
+                "qnAccount": {
+                    "description": "青牛账号",
+                    "type": "string"
+                },
+                "qnPassword": {
+                    "description": "青牛密码",
+                    "type": "string"
+                },
+                "remark": {
+                    "description": "备注",
+                    "type": "string"
+                },
+                "roleId": {
+                    "description": "角色id",
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "sex": {
+                    "description": "性别",
+                    "type": "string"
+                },
+                "stationId": {
+                    "description": "岗位id",
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "tapeId": {
+                    "description": "最新坐席通话id",
+                    "type": "integer",
+                    "format": "int64"
+                }
+            }
+        },
+        "models.Users": {
+            "title": "Users",
+            "type": "object",
+            "properties": {
+                "State": {
+                    "description": "状态",
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "_id": {
+                    "$ref": "#/definitions/bson.ObjectId",
+                    "description": "主键编号"
+                },
+                "account": {
+                    "description": "账号",
+                    "type": "string"
+                },
+                "address": {
+                    "description": "详细地址到具体街道",
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "app": {
+                    "description": "1 ios,2 android,3 wx,4pc5 wd 6 wap",
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "appVersion": {
+                    "description": "app版本",
+                    "type": "string"
+                },
+                "appVersionRecent": {
+                    "description": "最近操作app版本",
+                    "type": "string"
+                },
+                "code": {
+                    "description": "账号表示",
+                    "type": "string"
+                },
+                "createTime": {
+                    "description": "创建时间",
+                    "type": "string"
+                },
+                "hisDevicecode": {
+                    "description": "手机设备标识",
+                    "type": "string"
+                },
+                "hisDevicecodeRecent": {
+                    "description": "最近手机设备标识",
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "ip": {
+                    "description": "ip地址",
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "ipAddress": {
+                    "description": "ip详细地址",
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "ipLocation": {
+                    "description": "ip地址到省市",
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "isemulator": {
+                    "description": "是否是模拟器",
+                    "type": "string"
+                },
+                "jpushid": {
+                    "description": "手机推送标识",
+                    "type": "string"
+                },
+                "loanControl": {
+                    "description": "借款控制: 0进行中有一笔不能申请第二笔,1:不做限制",
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "location": {
+                    "description": "地址到省市",
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "loginPassword": {
+                    "description": "登录密码",
+                    "type": "string"
+                },
+                "loginTime": {
+                    "description": "登录时间",
+                    "type": "string"
+                },
+                "mobileType": {
+                    "description": "手机类型",
+                    "type": "string"
+                },
+                "mobileTypeRecent": {
+                    "description": "最近操作的结果，手机型号",
+                    "type": "string"
+                },
+                "mobileVersion": {
+                    "description": "手机状态",
+                    "type": "string"
+                },
+                "operationTime": {
+                    "description": "最近操作的时间（1.2.1 版本加入的获取用户接口）",
+                    "type": "string"
+                },
+                "pkgType": {
+                    "description": "包的标识",
+                    "type": "string"
+                },
+                "source": {
+                    "description": "来源",
+                    "type": "string"
+                },
+                "tagSysId": {
+                    "description": "标记人账号id",
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "tagType": {
+                    "description": "标记欺诈类型",
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "token": {
+                    "description": "服务器保存一致信息",
+                    "type": "string"
+                },
+                "userImg": {
+                    "description": "用户头像",
+                    "type": "string"
+                },
+                "wrCode": {
+                    "description": "微融code",
+                    "type": "string"
+                }
+            }
+        },
+        "models.UsersParams": {
+            "title": "Users",
+            "type": "object",
+            "properties": {
+                "State": {
+                    "description": "状态",
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "VerifyCode": {
+                    "type": "string"
+                },
+                "_id": {
+                    "$ref": "#/definitions/bson.ObjectId",
+                    "description": "主键编号"
+                },
+                "account": {
+                    "description": "账号",
+                    "type": "string"
+                },
+                "address": {
+                    "description": "详细地址到具体街道",
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "app": {
+                    "description": "1 ios,2 android,3 wx,4pc5 wd 6 wap",
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "appVersion": {
+                    "description": "app版本",
+                    "type": "string"
+                },
+                "appVersionRecent": {
+                    "description": "最近操作app版本",
+                    "type": "string"
+                },
+                "code": {
+                    "description": "账号表示",
+                    "type": "string"
+                },
+                "createTime": {
+                    "description": "创建时间",
+                    "type": "string"
+                },
+                "hisDevicecode": {
+                    "description": "手机设备标识",
+                    "type": "string"
+                },
+                "hisDevicecodeRecent": {
+                    "description": "最近手机设备标识",
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "ip": {
+                    "description": "ip地址",
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "ipAddress": {
+                    "description": "ip详细地址",
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "ipLocation": {
+                    "description": "ip地址到省市",
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "isemulator": {
+                    "description": "是否是模拟器",
+                    "type": "string"
+                },
+                "jpushid": {
+                    "description": "手机推送标识",
+                    "type": "string"
+                },
+                "loanControl": {
+                    "description": "借款控制: 0进行中有一笔不能申请第二笔,1:不做限制",
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "location": {
+                    "description": "地址到省市",
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "loginPassword": {
+                    "description": "登录密码",
+                    "type": "string"
+                },
+                "loginTime": {
+                    "description": "登录时间",
+                    "type": "string"
+                },
+                "mobileType": {
+                    "description": "手机类型",
+                    "type": "string"
+                },
+                "mobileTypeRecent": {
+                    "description": "最近操作的结果，手机型号",
+                    "type": "string"
+                },
+                "mobileVersion": {
+                    "description": "手机状态",
+                    "type": "string"
+                },
+                "operationTime": {
+                    "description": "最近操作的时间（1.2.1 版本加入的获取用户接口）",
+                    "type": "string"
+                },
+                "pkgType": {
+                    "description": "包的标识",
+                    "type": "string"
+                },
+                "source": {
+                    "description": "来源",
+                    "type": "string"
+                },
+                "tagSysId": {
+                    "description": "标记人账号id",
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "tagType": {
+                    "description": "标记欺诈类型",
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "token": {
+                    "description": "服务器保存一致信息",
+                    "type": "string"
+                },
+                "userImg": {
+                    "description": "用户头像",
+                    "type": "string"
+                },
+                "wrCode": {
+                    "description": "微融code",
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "sysuser",
+            "description": "管理员模块\n"
+        },
+        {
+            "name": "user",
+            "description": "用户模块\n"
+        }
+    ]
+}
